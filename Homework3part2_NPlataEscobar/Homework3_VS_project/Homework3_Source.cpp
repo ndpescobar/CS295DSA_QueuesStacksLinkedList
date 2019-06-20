@@ -12,13 +12,15 @@
 using namespace std;
 
 class Stack {
-private:
 	int MAX = 1024;
+	string *arrS;
 	int top;
+	
 public:
-	string a[MAX];
-
-	Stack() { top = -1; }
+	string arrS[MAX];
+	Stack(int size) {
+		top = -1;
+	}
 
 	bool push(string s) {
 		if (top >= (MAX - 1)) {
@@ -26,72 +28,63 @@ public:
 			return false;
 		}
 		else {
-			a[++top] = s;
+			arrS[++top] = s;
 			cout << "pushing: " << s << endl;
 			return true;
 		}
 	}
 
 	string pop() {
-		string sTemp = "";
 		if (top < 0) {
 			cout << "Stack Underflow" << endl;
 			return "";
 		}
 		else {
-			sTemp = a[top--];
-			return sTemp;
+			return arrS[top--];
 		}
 	}
 
 	string FindDeveloper(string developer) {
-	
+		
 	}
 
 	void AddToEnd(string gameTitle) {
-		// arrays are not dynamic. Must increase size of 
-		if (top < (MAX - 1) && top > 0) {
-			a[++top] = gameTitle;
-			cout << "adding " << s << " to end of stack" << endl;
+		// arrays are not dynamic.
+		if (top >= (MAX - 1)) {
+			cout << "Stack is full. Cannot add to end." << endl;
 		}
 		else {
-			cout << "Stack error" << endl;
+			arrS[0] = gameTitle;
+			cout << "adding \"" << gameTitle << "\" to end of stack" << endl;
 		}
 	}
 
 	void WriteCSV(string fileName) {
-		
+		ofstream fileCSV;
+		cout << "Opening" << fileName << endl;
+		fileCSV.open(fileName, ios_base::out);
+		if (fileCSV.is_open) {
+			cout << "Writing..." << endl;
+			for (int i = top; i >= 0; i--) {
+				fileCSV << arrS[i];
+			}
+		}
+		cout << "Closing" << fileName << endl;
+		fileCSV.close();
 	}
 };
 
 class Queue {
 public:
 	string a[MAX];
-
 	Stack() { top = -1; }
 
 	bool Enqueue(string s) {
-		if (top >= (MAX - 1)) {
-			cout << "Stack Overflow" << endl;
-			return false;
-		}
-		else {
-			a[++top] = s;
-			cout << "pushing: " << s << endl;
-			return true;
-		}
+		
 	}
 
 	string Dequeue() {
-		string sTemp = "";
-		if (top < 0) {
-			cout << "Stack Underflow" << endl;
-			return "";
-		}
-		else {
-			sTemp = a[top--];
-			return sTemp;
-		}
+		
 	}
 
 	string FindDeveloper(string developer) {
@@ -99,14 +92,7 @@ public:
 	}
 
 	void AddToEnd(string gameTitle) {
-		// arrays are not dynamic. Must increase size of 
-		if (top < (MAX - 1) && top > 0) {
-			a[++top] = gameTitle;
-			cout << "adding " << s << " to end of stack" << endl;
-		}
-		else {
-			cout << "Stack error" << endl;
-		}
+		
 	}
 };
 
