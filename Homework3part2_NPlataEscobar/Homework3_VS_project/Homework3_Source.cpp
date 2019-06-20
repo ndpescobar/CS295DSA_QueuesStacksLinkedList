@@ -3,6 +3,7 @@
 	@version: v0.1, 06/19/2019.
 */
 #include <iostream>
+#include <fstream>
 #include <string>
 #include <stack>
 #include <queue>
@@ -48,11 +49,64 @@ public:
 	}
 
 	void AddToEnd(string gameTitle) {
-	
+		// arrays are not dynamic. Must increase size of 
+		if (top < (MAX - 1) && top > 0) {
+			a[++top] = gameTitle;
+			cout << "adding " << s << " to end of stack" << endl;
+		}
+		else {
+			cout << "Stack error" << endl;
+		}
 	}
 
 	void WriteCSV(string fileName) {
-	
+		
+	}
+};
+
+class Queue {
+public:
+	string a[MAX];
+
+	Stack() { top = -1; }
+
+	bool Enqueue(string s) {
+		if (top >= (MAX - 1)) {
+			cout << "Stack Overflow" << endl;
+			return false;
+		}
+		else {
+			a[++top] = s;
+			cout << "pushing: " << s << endl;
+			return true;
+		}
+	}
+
+	string Dequeue() {
+		string sTemp = "";
+		if (top < 0) {
+			cout << "Stack Underflow" << endl;
+			return "";
+		}
+		else {
+			sTemp = a[top--];
+			return sTemp;
+		}
+	}
+
+	string FindDeveloper(string developer) {
+
+	}
+
+	void AddToEnd(string gameTitle) {
+		// arrays are not dynamic. Must increase size of 
+		if (top < (MAX - 1) && top > 0) {
+			a[++top] = gameTitle;
+			cout << "adding " << s << " to end of stack" << endl;
+		}
+		else {
+			cout << "Stack error" << endl;
+		}
 	}
 };
 
